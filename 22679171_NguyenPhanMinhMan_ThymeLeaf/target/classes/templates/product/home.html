@@ -9,7 +9,16 @@
 </head>
 <body>
 <h1>Employee List</h1>
-<table>
+<form th:action="@{/product/search}" method="get"
+      style="margin-bottom: 20px; display: flex; gap: 10px; align-items: center; justify-content: center;">
+    <input type="text" name="keyword" placeholder="Search by name, age or salary..."
+           style="padding: 8px; width: 300px; border-radius: 6px; border: 1px solid #ccc;">
+    <button type="submit" style="padding: 8px 16px; border-radius: 6px; background-color: #007bff; color: white; border: none;">
+        Search
+    </button>
+</form>
+
+<table border="1" width="80%">
     <tr>
         <td>ID</td>
         <td>Name</td>
@@ -27,8 +36,8 @@
         <td th:text="${employee.department.deptName}"></td>
         <td th:text="${employee.salary}"></td>
         <td>
-            <a th:href="@{'/employees/' + ${employee.id}}">Edit</a> |
-            <a th:href="@{'/employees/' + ${employee.id}}">Delete</a>
+            <a th:href="@{'/employees/' + ${employee.empId}}">Edit</a> |
+            <a th:href="@{'/employees/' + ${employee.empId}}">Delete</a>
         </td>
     </tr>
 </table>

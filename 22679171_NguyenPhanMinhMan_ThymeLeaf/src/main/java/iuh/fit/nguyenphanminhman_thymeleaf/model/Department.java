@@ -3,6 +3,7 @@ package iuh.fit.nguyenphanminhman_thymeleaf.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
