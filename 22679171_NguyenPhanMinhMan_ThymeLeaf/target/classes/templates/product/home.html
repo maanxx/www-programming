@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee List</title>
+</head>
+<body>
+<h1>Employee List</h1>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Age</td>
+        <td>DeptName</td>
+        <td>Salary</td>
+        <td>Actions</td>
+    </tr>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.empId}"></td>
+        <td th:text="${employee.empName}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.age}"></td>
+        <td th:text="${employee.department.deptName}"></td>
+        <td th:text="${employee.salary}"></td>
+        <td>
+            <a th:href="@{'/employees/' + ${employee.id}}">Edit</a> |
+            <a th:href="@{'/employees/' + ${employee.id}}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
