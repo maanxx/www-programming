@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${isEdit} ? 'Edit Department' : 'Add Department'"></title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            background: #fff;
+            margin: 50px auto;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 18px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.25s ease-in-out;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 th:text="${isEdit} ? 'Edit Department Information' : 'Add New Department'"></h2>
+
+    <form th:action="@{/departments/save}" th:object="${department}" method="post">
+        <label>Department ID</label>
+        <input type="text" th:field="*{deptId}" th:readonly="${isEdit}" placeholder="Enter Department ID" required>
+
+        <label>Department Name</label>
+        <input type="text" th:field="*{deptName}" placeholder="Enter Department Name" required>
+
+        <button type="submit">
+            <span th:text="${isEdit} ? 'Update Department' : 'Save Department'"></span>
+        </button>
+
+        <a th:href="@{/departments}" class="back-link">⬅ Back to Department List</a>
+    </form>
+</div>
+
+</body>
+</html>

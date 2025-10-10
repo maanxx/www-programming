@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${isEdit} ? 'Edit Employee' : 'Add Employee'"></title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .form-container {
+            width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 4px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.2);
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .btn-back:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+<h2 th:text="${isEdit} ? 'Edit Employee Information' : 'Add New Employee'"></h2>
+
+<div class="form-container">
+    <form th:action="@{/product/save}" th:object="${employee}" method="post">
+
+        <label>ID</label>
+        <input type="text" th:field="*{empId}"
+               th:readonly="${isEdit}" placeholder="Employee ID" required>
+
+        <label>Name</label>
+        <input type="text" th:field="*{empName}" placeholder="Employee Name" required>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" placeholder="Email" required>
+
+        <label>Age</label>
+        <input type="number" th:field="*{age}" placeholder="Age" required>
+
+        <label>Department ID</label>
+        <input type="text" th:field="*{department.deptId}" placeholder="Department ID" required>
+
+        <label>Salary</label>
+        <input type="number" th:field="*{salary}" placeholder="Salary" required>
+
+        <button type="submit" class="btn-submit"
+                th:text="${isEdit} ? 'Update Employee' : 'Save Employee'"></button>
+
+        <a th:href="@{/product}" class="btn-back">← Back to List</a>
+    </form>
+</div>
+</body>
+</html>

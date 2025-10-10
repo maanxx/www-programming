@@ -13,4 +13,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     List<Employee> findByAge(int age);
 
     List<Employee> findBySalary(double salary);
+
+    void deleteByEmpId(String empId);
+
+    List<Employee> findByDepartment_DeptId(String deptId);
 }

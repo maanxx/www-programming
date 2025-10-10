@@ -28,8 +28,8 @@ public class EmployeeService {
     }
 
     // delete
-    public void deleteById(String id) {
-        employeeRepository.deleteById(id);
+    public void deleteById(String empId) {
+        employeeRepository.deleteById(empId);
     }
 
     // tim theo ten
@@ -47,5 +47,9 @@ public class EmployeeService {
         return employeeRepository.findBySalary(salary);
     }
 
+    // tim theo deptId
+    public List<Employee> findByDeptId(String deptId) {
+        return employeeRepository.findByDepartment_DeptId(deptId);
+    }
 
 }
